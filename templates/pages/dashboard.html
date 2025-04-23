@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Личный кабинет - CodeKids{% endblock %}
+{% block content %}
+<main>
+    <section class="py-20">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-8">Добро пожаловать, Анна!</h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Example Course -->
+                <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+                    <h3 class="text-xl font-semibold text-blue-600 mb-2">Основы Scratch</h3>
+                    <p class="text-gray-600">Возраст: 7–9 лет · Онлайн</p>
+                    <p class="text-gray-500 text-sm mt-2">Следующее занятие: 23 апреля</p>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+                    <h3 class="text-xl font-semibold text-blue-600 mb-2">Python для начинающих</h3>
+                    <p class="text-gray-600">Возраст: 10–13 лет · Офлайн</p>
+                    <p class="text-gray-500 text-sm mt-2">Следующее занятие: 25 апреля</p>
+                </div>
+
+                <!-- Можно добавлять блоки с курсами -->
+            </div>
+        </div>
+    </section>
+</main>

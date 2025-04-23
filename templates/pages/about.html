@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block title %}О нас - CodeKids{% endblock %}
+{% block content %}
+
+<main>
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-semibold mb-12 text-gray-800">О нас</h2>
+            <p class="text-lg text-gray-600 mb-8">
+                Мы — команда профессионалов, посвятивших свою жизнь обучению детей
+                программированию. В своей работе мы используем игровые методики, чтобы
+                сделать процесс обучения увлекательным и продуктивным.
+            </p>
+        </div>
+    </section>
+
+    <!-- Teachers -->
+    <section id="teachers" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h3 class="text-3xl font-semibold mb-12 text-gray-800">
+                Наши преподаватели
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Teacher 1 -->
+                <div
+                        class="bg-white p-6 rounded-2xl shadow hover:shadow-md transition"
+                >
+                    <img
+                            src="https://via.placeholder.com/150"
+                            alt="Teacher 1"
+                            class="w-32 h-32 rounded-full mx-auto mb-4"
+                    />
+                    <h4 class="text-xl font-semibold text-blue-600 mb-2">
+                        Иван Петров
+                    </h4>
+                    <p class="text-gray-600">
+                        Преподаватель Python, с опытом работы в крупных IT-компаниях.
+                    </p>
+                </div>
+                <!-- Teacher 2 -->
+                <div
+                        class="bg-white p-6 rounded-2xl shadow hover:shadow-md transition"
+                >
+                    <img
+                            src="https://via.placeholder.com/150"
+                            alt="Teacher 2"
+                            class="w-32 h-32 rounded-full mx-auto mb-4"
+                    />
+                    <h4 class="text-xl font-semibold text-blue-600 mb-2">
+                        Мария Смирнова
+                    </h4>
+                    <p class="text-gray-600">
+                        Эксперт по Scratch и образовательным играм для детей.
+                    </p>
+                </div>
+                <!-- Teacher 3 -->
+                <div
+                        class="bg-white p-6 rounded-2xl shadow hover:shadow-md transition"
+                >
+                    <img
+                            src="https://via.placeholder.com/150"
+                            alt="Teacher 3"
+                            class="w-32 h-32 rounded-full mx-auto mb-4"
+                    />
+                    <h4 class="text-xl font-semibold text-blue-600 mb-2">
+                        Дмитрий Иванов
+                    </h4>
+                    <p class="text-gray-600">
+                        Мастер Minecraft моддинга и создания игровых проектов.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission -->
+    <section id="mission" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h3 class="text-3xl font-semibold mb-12 text-gray-800">Наша миссия</h3>
+            <p class="text-lg text-gray-600 mb-8">
+                Наша миссия — сделать программирование доступным и увлекательным для
+                каждого ребёнка. Мы верим, что в будущем каждый ребёнок должен быть не
+                просто потребителем технологий, но и создателем.
+            </p>
+        </div>
+    </section>
+</main>
+{% endblock %}

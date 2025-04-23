@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %}Контакты - CodeKids{% endblock %}
+{% block content %}
+<main>
+    <section id="contacts" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-semibold mb-12 text-gray-800">Контакты</h2>
+
+            <!-- Contact Info -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                <div
+                        class="bg-white p-8 rounded-2xl shadow hover:shadow-md transition"
+                >
+                    <h3 class="text-xl font-semibold text-blue-600 mb-4">
+                        Наши контакты
+                    </h3>
+                    <p class="text-gray-600 mb-4">Телефон: +7 (900) 000-00-00</p>
+                    <p class="text-gray-600 mb-4">Email: hello@codekids.ru</p>
+                    <p class="text-gray-600 mb-4">Социальные сети:</p>
+                    <ul class="text-gray-600">
+                        <li><a href="#" class="hover:text-blue-600">Instagram</a></li>
+                        <li><a href="#" class="hover:text-blue-600">Telegram</a></li>
+                        <li><a href="#" class="hover:text-blue-600">VK</a></li>
+                    </ul>
+                </div>
+
+                <div
+                        class="bg-white p-8 rounded-2xl shadow hover:shadow-md transition"
+                >
+                    <h3 class="text-xl font-semibold text-blue-600 mb-4">
+                        Наша локация
+                    </h3>
+                    <p class="text-gray-600 mb-4">Москва, ул. Программирования, 10</p>
+                    <div class="w-full h-64 bg-gray-300 rounded-lg mb-4">
+                        <!-- Здесь вставить карту (например, через Google Maps) -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div
+                    class="bg-white p-8 rounded-2xl shadow hover:shadow-md transition mt-12"
+            >
+                <h3 class="text-xl font-semibold text-blue-600 mb-4">Напишите нам</h3>
+                <form action="#" method="POST">
+                    <input
+                            type="text"
+                            name="name"
+                            placeholder="Ваше имя"
+                            class="w-full p-4 mb-4 rounded-xl border border-gray-300"
+                    />
+                    <input
+                            type="email"
+                            name="email"
+                            placeholder="Ваш email"
+                            class="w-full p-4 mb-4 rounded-xl border border-gray-300"
+                    />
+                    <textarea
+                            name="message"
+                            rows="4"
+                            placeholder="Ваше сообщение"
+                            class="w-full p-4 mb-4 rounded-xl border border-gray-300"
+                    ></textarea>
+                    <button
+                            type="submit"
+                            class="w-full py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition"
+                    >
+                        Отправить
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
