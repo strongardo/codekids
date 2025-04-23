@@ -1,12 +1,14 @@
 <header class="bg-white shadow-sm sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <a href="index.html"><h1 class="text-2xl font-bold text-blue-600">CodeKids</h1></a>
+        <a href="{% url 'home' %}"><h1 class="text-2xl font-bold text-blue-600">CodeKids</h1></a>
         <nav class="space-x-6 text-sm font-medium">
-            <a href="courses.html" class="text-gray-600 hover:text-blue-600 transition">Курсы</a>
-            <a href="about.html" class="text-gray-600 hover:text-blue-600 transition">О нас</a>
-            <a href="contacts.html" class="text-gray-600 hover:text-blue-600 transition">Контакты</a>
-            <a href="register.html" class="text-gray-600 hover:text-blue-600 transition">Регистрация</a>
-            <a href="login.html" class="text-gray-600 hover:text-blue-600 transition">Вход</a>
+            <a href="{% url 'courses' %}" class="text-gray-600 hover:text-blue-600 transition">Курсы</a>
+            <a href="{% url 'about' %}" class="text-gray-600 hover:text-blue-600 transition">О нас</a>
+            <a href="{% url 'contacts' %}" class="text-gray-600 hover:text-blue-600 transition">Контакты</a>
+            <a href="{% url 'register' %}" class="text-gray-600 hover:text-blue-600 transition">Регистрация</a>
+            <a href="{% url 'dashboard' %}" class="text-gray-600 hover:text-blue-600 transition">Личный кабинет</a>
+            <a href="{% url 'thanks' %}" class="text-gray-600 hover:text-blue-600 transition">Спасибо</a>
+            <a href="{% url 'login' %}" class="text-gray-600 hover:text-blue-600 transition">Вход</a>
             <a href="#" class="text-gray-600 hover:text-blue-600 transition">Выход</a>
         </nav>
     </div>

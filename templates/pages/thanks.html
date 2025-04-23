@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Спасибо за вашу заявку - CodeKids{% endblock %}
+{% block title %} {{ title }} {% endblock %}
 {% block content %}
 <main>
 
@@ -12,7 +12,7 @@
 
             <h1 class="text-2xl font-bold text-gray-800 mb-4">Спасибо за вашу заявку!</h1>
             <p class="text-gray-600 mb-6">
-                Мы получили вашу информацию и свяжемся с вами в ближайшее время.<br/>
+                {{ text }} <br/>
                 Пока можете вернуться на главную.
             </p>
 
@@ -23,3 +23,4 @@
         </div>
     </div>
 </main>
+{% endblock %}
