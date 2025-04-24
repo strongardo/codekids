@@ -1,25 +1,40 @@
 from django.shortcuts import render
+from education.models import Course
+
 
 def home(request):
-    return render(request, 'pages/home.html')
+    hit_courses = Course.objects.filter(is_hit=True)
+    return render(request, 'pages/home.html', {
+        'courses': hit_courses,
+    })
+
 
 def courses(request):
-    return render(request, 'pages/courses.html')
+    all_courses = Course.objects.all()
+    return render(request, 'pages/courses.html', {
+        'courses': all_courses,
+    })
+
 
 def about(request):
     return render(request, 'pages/about.html')
 
+
 def contacts(request):
     return render(request, 'pages/contacts.html')
+
 
 def register(request):
     return render(request, 'pages/register.html')
 
+
 def login(request):
     return render(request, 'pages/login.html')
 
+
 def dashboard(request):
     return render(request, 'pages/dashboard.html')
+
 
 def thanks(request):
     title = 'Спасибо за вашу заявку - CodeKids'

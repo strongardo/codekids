@@ -66,21 +66,27 @@
     <!-- Courses -->
     <section id="courses" class="py-20 bg-gray-50 fade-in">
         <div class="max-w-6xl mx-auto px-4 text-center">
-            <h3 class="text-3xl font-semibold mb-12 text-gray-800">Наши курсы</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+            <h3 class="text-3xl font-semibold mb-12 text-gray-800">Популярные курсы</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mb-12">
+                {% for course in courses %}
                 <div class="bg-white p-6 rounded-2xl shadow hover:shadow-md transition">
-                    <h4 class="text-lg font-semibold text-blue-600 mb-1">Scratch (7–9 лет)</h4>
-                    <p class="text-gray-600">Визуальное программирование и весёлые интерактивные истории.</p>
+                    <h4 class="text-lg font-semibold text-blue-600 mb-1">{{ course.title }}</h4>
+                    <p class="text-gray-600">{{ course.description }}</p>
+
+                    <div class="pt-4">
+                        <a href="#"
+                           class="inline-block px-4 py-2 rounded-xl bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition">
+                            Подробнее
+                        </a>
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow hover:shadow-md transition">
-                    <h4 class="text-lg font-semibold text-blue-600 mb-1">Python Start (10–14 лет)</h4>
-                    <p class="text-gray-600">Скрипты, игры и алгоритмы на языке Python — интересно и полезно.</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow hover:shadow-md transition">
-                    <h4 class="text-lg font-semibold text-blue-600 mb-1">Minecraft Modding</h4>
-                    <p class="text-gray-600">Изучаем код на любимой платформе — создаём моды и логические цепочки.</p>
-                </div>
+                {% endfor %}
             </div>
+
+            <a href="{% url 'courses' %}"
+               class="inline-block bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold px-8 py-3 rounded-full transition-all shadow-lg hover:shadow-xl">
+                Все курсы
+            </a>
         </div>
     </section>
 
