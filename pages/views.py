@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from education.models import Course
+from education.models import Course, Teacher
 
 
 def home(request):
@@ -17,7 +17,10 @@ def courses(request):
 
 
 def about(request):
-    return render(request, 'pages/about.html')
+    teachers = Teacher.objects.all()
+    return render(request, 'pages/about.html', {
+        'teachers': teachers,
+    })
 
 
 def contacts(request):

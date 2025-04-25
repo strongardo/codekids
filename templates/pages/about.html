@@ -21,54 +21,9 @@
                 Наши преподаватели
             </h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Teacher 1 -->
-                <div
-                        class="bg-white p-6 rounded-2xl shadow hover:shadow-md transition"
-                >
-                    <img
-                            src="https://via.placeholder.com/150"
-                            alt="Teacher 1"
-                            class="w-32 h-32 rounded-full mx-auto mb-4"
-                    />
-                    <h4 class="text-xl font-semibold text-blue-600 mb-2">
-                        Иван Петров
-                    </h4>
-                    <p class="text-gray-600">
-                        Преподаватель Python, с опытом работы в крупных IT-компаниях.
-                    </p>
-                </div>
-                <!-- Teacher 2 -->
-                <div
-                        class="bg-white p-6 rounded-2xl shadow hover:shadow-md transition"
-                >
-                    <img
-                            src="https://via.placeholder.com/150"
-                            alt="Teacher 2"
-                            class="w-32 h-32 rounded-full mx-auto mb-4"
-                    />
-                    <h4 class="text-xl font-semibold text-blue-600 mb-2">
-                        Мария Смирнова
-                    </h4>
-                    <p class="text-gray-600">
-                        Эксперт по Scratch и образовательным играм для детей.
-                    </p>
-                </div>
-                <!-- Teacher 3 -->
-                <div
-                        class="bg-white p-6 rounded-2xl shadow hover:shadow-md transition"
-                >
-                    <img
-                            src="https://via.placeholder.com/150"
-                            alt="Teacher 3"
-                            class="w-32 h-32 rounded-full mx-auto mb-4"
-                    />
-                    <h4 class="text-xl font-semibold text-blue-600 mb-2">
-                        Дмитрий Иванов
-                    </h4>
-                    <p class="text-gray-600">
-                        Мастер Minecraft моддинга и создания игровых проектов.
-                    </p>
-                </div>
+                {% for teacher in teachers %}
+                {% include 'partials/teacher_card.html' %}
+                {% endfor %}
             </div>
         </div>
     </section>

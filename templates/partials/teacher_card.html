@@ -1,0 +1,44 @@
+<div class="bg-white p-6 rounded-2xl shadow hover:shadow-md transition">
+    {% if teacher.photo %}
+    <img
+            src="{{ teacher.photo.url }}"
+            alt="{{ teacher.first_name }} {{ teacher.last_name }}"
+            class="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
+    />
+    {% endif %}
+
+    <h4 class="text-xl font-semibold text-blue-600 text-center mb-1">
+        {{ teacher.first_name }} {{ teacher.last_name }}
+    </h4>
+
+    <p class="text-sm text-center text-gray-500 mb-4">
+        {{ teacher.specialization }}
+    </p>
+
+    <p class="text-gray-700 text-sm leading-relaxed mb-3">
+        {{ teacher.bio }}
+    </p>
+
+    <div class="text-sm text-gray-600 mb-2">
+        <strong>Преподает с:</strong>
+        {{ teacher.start_date|date:"F Y" }}
+    </div>
+
+    <div class="text-sm text-gray-600 mb-2">
+        <strong>Email:</strong>
+        <a href="mailto:{{ teacher.email }}" class="text-blue-600 hover:underline">
+            {{ teacher.email }}
+        </a>
+    </div>
+
+    {% if teacher.social_links %}
+    <div class="flex gap-4 mt-4 justify-center">
+        {% for platform, url in teacher.social_links.items %}
+        <a href="{{ url }}" target="_blank" class="text-gray-500 hover:text-blue-600 transition"
+           title="{{ platform }}">
+            <i class="fab fa-{{ platform|lower }}"></i>
+        </a>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
