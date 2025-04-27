@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Feature, Hero, About, ThankYouText
+from .models import Feature, Hero, About, ThankYouText, ContactInfo
 
 
 @admin.register(Feature)
@@ -28,3 +28,9 @@ class AboutAdmin(admin.ModelAdmin):
 @admin.register(ThankYouText)
 class ThankYouTextAdmin(admin.ModelAdmin):
     list_display = ('type',)  # запятая обязательна
+
+
+@admin.register(ContactInfo)
+class ContactInfoAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        return not ContactInfo.objects.exists()

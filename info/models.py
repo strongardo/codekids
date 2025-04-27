@@ -78,3 +78,25 @@ class ThankYouText(models.Model):
 
     def __str__(self):
         return f"Текст для {self.get_type_display()}"
+
+
+class ContactInfo(models.Model):
+    phone = models.CharField("Номер телефона", max_length=20, blank=True)
+    email = models.EmailField("Email", blank=True)
+    whatsapp_number = models.CharField("Номер Whatsapp", max_length=20, blank=True, null=True)
+    telegram_login = models.CharField("Логин Telegram(без @)", max_length=50, blank=True, null=True)
+
+    instagram_link = models.URLField("Ссылка на Instagram", blank=True)
+    vk_link = models.URLField("Ссылка на VK", blank=True)
+    youtube_link = models.URLField("Ссылка на YouTube", blank=True)
+
+    address = models.CharField("Адрес", max_length=255, blank=True)
+    latitude = models.DecimalField("Широта (latitude)", max_digits=9, decimal_places=6, blank=True, null=True)
+    longitude = models.DecimalField("Долгота (longitude)", max_digits=9, decimal_places=6, blank=True, null=True)
+
+    class Meta:
+        verbose_name = "Контактная информация"
+        verbose_name_plural = "Контактная информация"
+
+    def __str__(self):
+        return "Контакты"

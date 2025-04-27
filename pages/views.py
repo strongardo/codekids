@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from education.models import Course, Teacher
-from info.models import Feature, Hero, About, ThankYouText
+from info.models import Feature, Hero, About, ThankYouText, ContactInfo
 
 
 def home(request):
@@ -32,7 +32,9 @@ def about(request):
 
 
 def contacts(request):
-    return render(request, 'pages/contacts.html')
+    contact_info = ContactInfo.objects.all().first()
+    print(contact_info.phone)
+    return render(request, 'pages/contacts.html', {'contacts': contact_info})
 
 
 def register(request):
@@ -48,16 +50,8 @@ def dashboard(request):
 
 
 def thanks(request, page_type):
-    thank_you_text = ThankYouText.objects.filter(type=page_type).first()
-
-    title = thank_you_text.title
-    text = thank_you_text.text
-
-    if not thank_you_text:
-        title = 'Спасибо!'
-        text = 'Мы получили ваше сообщение'
+    thank_you = get_object_or_404(ThankYouText, type=page_type)
 
     return render(request, 'pages/thanks.html', {
-        'title': title,
-        'text': text,
+        'thank_you': thank_you,
     })

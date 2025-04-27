@@ -6,41 +6,92 @@
         <div class="max-w-6xl mx-auto px-4 text-center">
             <h2 class="text-3xl font-semibold mb-12 text-gray-800">Контакты</h2>
 
-            <!-- Contact Info -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <div
-                        class="bg-white p-8 rounded-2xl shadow hover:shadow-md transition"
-                >
+                <div class="bg-white p-8 rounded-2xl shadow hover:shadow-md transition">
                     <h3 class="text-xl font-semibold text-blue-600 mb-4">
                         Наши контакты
                     </h3>
-                    <p class="text-gray-600 mb-4">Телефон: +7 (900) 000-00-00</p>
-                    <p class="text-gray-600 mb-4">Email: hello@codekids.ru</p>
-                    <p class="text-gray-600 mb-4">Социальные сети:</p>
-                    <ul class="text-gray-600">
-                        <li><a href="#" class="hover:text-blue-600">Instagram</a></li>
-                        <li><a href="#" class="hover:text-blue-600">Telegram</a></li>
-                        <li><a href="#" class="hover:text-blue-600">VK</a></li>
-                    </ul>
+
+                    {% if contacts.phone %}
+                    <p class="text-gray-600 mb-4">
+                        <i class="fas fa-phone-alt text-blue-600 mr-2"></i>
+                        <a href="tel:{{ contacts.phone }}" class="hover:text-blue-600">{{ contacts.phone }}</a>
+                    </p>
+                    {% endif %}
+
+                    {% if contacts.email %}
+                    <p class="text-gray-600 mb-4">
+                        <i class="fas fa-envelope text-blue-600 mr-2"></i>
+                        <a href="mailto:{{ contacts.email }}" class="hover:text-blue-600">{{ contacts.email }}</a>
+                    </p>
+                    {% endif %}
+
+                    {% if contacts.whatsapp_number %}
+                    <p class="text-gray-600 mb-4">
+                        <i class="fab fa-whatsapp text-green-500 mr-2"></i>
+                        <a href="https://wa.me/{{ contacts.whatsapp_number }}" target="_blank"
+                           class="hover:text-green-600">{{ contacts.whatsapp_number }}</a>
+                    </p>
+                    {% endif %}
+
+                    {% if contacts.telegram_login %}
+                    <p class="text-gray-600 mb-4">
+                        <i class="fab fa-telegram-plane text-blue-400 mr-2"></i>
+                        <a href="https://t.me/{{ contacts.telegram_login }}" target="_blank"
+                           class="hover:text-blue-500">@{{ contacts.telegram_login }}</a>
+                    </p>
+                    {% endif %}
+
+                    {% if contacts.instagram_link %}
+                    <a href="{{ contacts.instagram_link }}" target="_blank" class="text-3xl mx-4 hover:opacity-80">
+                        <i class="fab fa-instagram text-pink-600"></i> <!-- Instagram цвета -->
+                    </a>
+                    {% endif %}
+
+                    {% if contacts.vk_link %}
+                    <a href="{{ contacts.vk_link }}" target="_blank" class="text-3xl mx-4 hover:opacity-80">
+                        <i class="fab fa-vk text-blue-600"></i> <!-- VK цвета -->
+                    </a>
+                    {% endif %}
+
+                    {% if contacts.youtube_link %}
+                    <a href="{{ contacts.youtube_link }}" target="_blank" class="text-3xl mx-4 hover:opacity-80">
+                        <i class="fab fa-youtube text-red-600"></i> <!-- YouTube цвета -->
+                    </a>
+                    {% endif %}
                 </div>
 
-                <div
-                        class="bg-white p-8 rounded-2xl shadow hover:shadow-md transition"
-                >
+                <div class="bg-white p-8 rounded-2xl shadow hover:shadow-md transition">
                     <h3 class="text-xl font-semibold text-blue-600 mb-4">
                         Наша локация
                     </h3>
-                    <p class="text-gray-600 mb-4">Москва, ул. Программирования, 10</p>
-                    <div class="w-full h-64 bg-gray-300 rounded-lg mb-4">
-                        <!-- Здесь вставить карту (например, через Google Maps) -->
+
+                    {% if contacts.address %}
+                    <p class="text-gray-600 mb-4">{{ contacts.address }}</p>
+                    {% endif %}
+
+                    {% if latitude and longitude %}
+                    <div class="w-full h-64 rounded-lg overflow-hidden mb-4">
+                        <iframe
+                                width="100%"
+                                height="100%"
+                                style="border:0;"
+                                loading="lazy"
+                                allowfullscreen
+                                referrerpolicy="no-referrer-when-downgrade"
+                                src="https://www.google.com/maps?q={{ latitude }},{{ longitude }}&hl=ru&z=16&output=embed">
+                        </iframe>
                     </div>
+                    {% else %}
+                    <div class="w-full h-64 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
+                        Пока мы работаем онлайн
+                    </div>
+                    {% endif %}
                 </div>
             </div>
 
             <!-- Contact Form -->
-            <div
-                    class="bg-white p-8 rounded-2xl shadow hover:shadow-md transition mt-12"
-            >
+            <div class="bg-white p-8 rounded-2xl shadow hover:shadow-md transition mt-12">
                 <h3 class="text-xl font-semibold text-blue-600 mb-4">Напишите нам</h3>
                 <form action="#" method="POST">
                     <input
@@ -72,4 +123,5 @@
         </div>
     </section>
 </main>
+
 {% endblock %}
