@@ -2,7 +2,6 @@
 {% block title %} {{ title }} {% endblock %}
 {% block content %}
 <main>
-
     <div class="min-h-screen flex flex-col items-center justify-center px-4 text-center">
         <div class="bg-white shadow-md rounded-2xl p-10 max-w-md w-full">
             <svg class="w-16 h-16 mx-auto mb-6 text-green-500" fill="none" stroke="currentColor" stroke-width="2"
@@ -10,13 +9,13 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
             </svg>
 
-            <h1 class="text-2xl font-bold text-gray-800 mb-4">Спасибо за вашу заявку!</h1>
+            <h1 class="text-2xl font-bold text-gray-800 mb-4">{{ title }}</h1>
             <p class="text-gray-600 mb-6">
                 {{ text }} <br/>
                 Пока можете вернуться на главную.
             </p>
 
-            <a href="index.html"
+            <a href="{% url 'home' %}"
                class="inline-block px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">
                 На главную
             </a>

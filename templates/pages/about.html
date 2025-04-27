@@ -7,14 +7,13 @@
         <div class="max-w-6xl mx-auto px-4 text-center">
             <h2 class="text-3xl font-semibold mb-12 text-gray-800">О нас</h2>
             <p class="text-lg text-gray-600 mb-8">
-                Мы — команда профессионалов, посвятивших свою жизнь обучению детей
-                программированию. В своей работе мы используем игровые методики, чтобы
-                сделать процесс обучения увлекательным и продуктивным.
+                {{ about_info.about_text }}
+                <br><br>
+                {{ about_info.mission_text }}
             </p>
         </div>
     </section>
 
-    <!-- Teachers -->
     <section id="teachers" class="py-20">
         <div class="max-w-6xl mx-auto px-4 text-center">
             <h3 class="text-3xl font-semibold mb-12 text-gray-800">
@@ -25,18 +24,6 @@
                 {% include 'partials/teacher_card.html' %}
                 {% endfor %}
             </div>
-        </div>
-    </section>
-
-    <!-- Mission -->
-    <section id="mission" class="py-20 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <h3 class="text-3xl font-semibold mb-12 text-gray-800">Наша миссия</h3>
-            <p class="text-lg text-gray-600 mb-8">
-                Наша миссия — сделать программирование доступным и увлекательным для
-                каждого ребёнка. Мы верим, что в будущем каждый ребёнок должен быть не
-                просто потребителем технологий, но и создателем.
-            </p>
         </div>
     </section>
 </main>

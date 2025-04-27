@@ -5,12 +5,11 @@
     <section class="bg-gradient-to-r from-blue-50 to-white py-24 fade-in">
         <div class="max-w-5xl mx-auto px-4 text-center">
             <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight mb-6">
-                Программирование для детей<br class="hidden sm:block"/>
-                через проекты и игру
+                {{ hero.top_text }}<br class="hidden sm:block"/>
+                {{ hero.bottom_text }}
             </h2>
             <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-                Мы обучаем детей 7–14 лет навыкам будущего: кодинг, логика, креативность. Онлайн и офлайн, с заботой и
-                вниманием.
+                {{ hero.description }}
             </p>
             <a href="#form"
                class="inline-block bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold px-8 py-3 rounded-full transition-all shadow-lg hover:shadow-xl">
@@ -19,67 +18,23 @@
         </div>
     </section>
 
-    <!-- Benefits -->
     <section id="about" class="py-20 bg-white fade-in">
         <div class="max-w-6xl mx-auto px-4 text-center">
             <h3 class="text-3xl font-semibold mb-12 text-gray-800">Почему родители выбирают нас</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gray-50 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
-                    <div class="mb-3">
-                        <svg class="w-10 h-10 mx-auto text-blue-500" fill="none" stroke="currentColor" stroke-width="2"
-                             viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                  d="M9.75 17L14.25 12L9.75 7V17Z"/>
-                        </svg>
-                    </div>
-                    <h4 class="text-lg font-semibold mb-2 text-blue-600">Игровой подход</h4>
-                    <p class="text-gray-600">Обучение через квесты, челленджи и весёлые проекты.</p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
-                    <div class="mb-3">
-                        <svg class="w-10 h-10 mx-auto text-blue-500" fill="none" stroke="currentColor" stroke-width="2"
-                             viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                  d="M12 14l9-5-9-5-9 5 9 5z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                  d="M12 14l6.16-3.422A12.083 12.083 0 0118 16.5c0 1.75-.646 3.368-1.71 4.5H7.71A6.5 6.5 0 016 16.5c0-2.136.837-4.098 2.21-5.422L12 14z"/>
-                        </svg>
-                    </div>
-                    <h4 class="text-lg font-semibold mb-2 text-blue-600">Настоящие разработчики</h4>
-                    <p class="text-gray-600">Учат профессионалы из индустрии, не теоретики.</p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
-                    <div class="mb-3">
-                        <svg class="w-10 h-10 mx-auto text-blue-500" fill="none" stroke="currentColor" stroke-width="2"
-                             viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                  d="M8 16l4-4 4 4M12 12v8"/>
-                        </svg>
-                    </div>
-                    <h4 class="text-lg font-semibold mb-2 text-blue-600">Проекты и креатив</h4>
-                    <p class="text-gray-600">Каждый курс — это персональный проект ребёнка.</p>
-                </div>
+                {% for feature in features %}
+                {% include 'partials/feature_card.html' %}
+                {% endfor %}
             </div>
         </div>
     </section>
 
-    <!-- Courses -->
     <section id="courses" class="py-20 bg-gray-50 fade-in">
         <div class="max-w-6xl mx-auto px-4 text-center">
             <h3 class="text-3xl font-semibold mb-12 text-gray-800">Популярные курсы</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mb-12">
                 {% for course in courses %}
-                <div class="bg-white p-6 rounded-2xl shadow hover:shadow-md transition">
-                    <h4 class="text-lg font-semibold text-blue-600 mb-1">{{ course.title }}</h4>
-                    <p class="text-gray-600">{{ course.description }}</p>
-
-                    <div class="pt-4">
-                        <a href="#"
-                           class="inline-block px-4 py-2 rounded-xl bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition">
-                            Подробнее
-                        </a>
-                    </div>
-                </div>
+                {% include 'partials/hit-course_card.html' %}
                 {% endfor %}
             </div>
 
@@ -90,7 +45,6 @@
         </div>
     </section>
 
-    <!-- Contact Form -->
     <section id="form" class="py-24 bg-white fade-in">
         <div class="max-w-xl mx-auto px-4">
             <h3 class="text-3xl font-semibold text-center mb-8 text-gray-800">Оставьте заявку</h3>
