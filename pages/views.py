@@ -1,18 +1,22 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from education.models import Course, Teacher
+from forms.forms import ApplicationForm
 from info.models import Feature, Hero, About, ThankYouText, ContactInfo
 
 
 def home(request):
-    hero = Hero.objects.first()
-    hit_courses = Course.objects.filter(is_hit=True)
-    features = Feature.objects.all()
+    context = {
+        'hero': Hero.objects.first(),
+        'features': Feature.objects.all(),
+        'courses': Course.objects.filter(is_hit=True),
+    }
 
-    return render(request, 'pages/home.html', {
-        'hero': hero,
-        'features': features,
-        'courses': hit_courses,
-    })
+    if request.method == 'POST':
+        form = ApplicationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/thanks/application/')
+        context['form'] = form
 
 
 def courses(request):

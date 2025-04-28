@@ -66,7 +66,7 @@ class About(models.Model):
 class ThankYouText(models.Model):
     type = models.CharField(max_length=50, choices=[
         ('application', 'Заявка'),
-        ('feedback', 'Отзыв'),
+        ('review', 'Отзыв'),
     ], verbose_name='Тип страницы', unique=True)
 
     title = models.CharField(max_length=50, verbose_name='Заголовок')

@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 <main>
-    <!-- Hero -->
     <section class="bg-gradient-to-r from-blue-50 to-white py-24 fade-in">
         <div class="max-w-5xl mx-auto px-4 text-center">
             <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight mb-6">
@@ -48,33 +47,87 @@
     <section id="form" class="py-24 bg-white fade-in">
         <div class="max-w-xl mx-auto px-4">
             <h3 class="text-3xl font-semibold text-center mb-8 text-gray-800">Оставьте заявку</h3>
-            <form class="bg-gray-50 p-8 rounded-2xl shadow space-y-6">
+            <form method="post"
+                  class="bg-gray-50 p-8 rounded-2xl shadow space-y-6">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                <div class="text-red-600 text-sm mb-4">
+                    {{ form.non_field_errors }}
+                </div>
+                {% endif %}
+
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Имя родителя</label>
                     <input type="text"
-                           class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+                           name="parent_name"
+                           value="{{ form.parent_name.value|default_if_none:'' }}"
+                           class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 {% if form.parent_name.errors %}border-red-500{% endif %}"/>
+                    {% for error in form.parent_name.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ error }}</p>
+                    {% endfor %}
                 </div>
+
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Возраст ребёнка</label>
                     <input type="number"
-                           class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+                           name="child_age"
+                           value="{{ form.child_age.value|default_if_none:'' }}"
+                           class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 {% if form.child_age.errors %}border-red-500{% endif %}"/>
+                    {% for error in form.child_age.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ error }}</p>
+                    {% endfor %}
                 </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Номер телефона</label>
+                    <input type="tel"
+                           name="phone"
+                           value="{{ form.phone.value|default_if_none:'' }}"
+                           class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 {% if form.phone.errors %}border-red-500{% endif %}"/>
+                    {% for error in form.phone.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
                     <input type="email"
-                           class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+                           name="email"
+                           value="{{ form.email.value|default_if_none:'' }}"
+                           class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 {% if form.email.errors %}border-red-500{% endif %}"/>
+                    {% for error in form.email.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ error }}</p>
+                    {% endfor %}
                 </div>
+
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Сообщение</label>
                     <textarea rows="3"
-                              class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                              name="message"
+                              class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 {% if form.message.errors %}border-red-500{% endif %}">{{ form.message.value|default_if_none:'' }}</textarea>
+                    {% for error in form.message.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ error }}</p>
+                    {% endfor %}
                 </div>
+
                 <button type="submit"
                         class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-md transition-all">
                     Отправить заявку
                 </button>
             </form>
+
         </div>
     </section>
 </main>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    {% if form.errors %}
+        window.onload = function() {
+            document.getElementById('form').scrollIntoView({ behavior: 'smooth' });
+        };
+    {% endif %}
+</script>
 {% endblock %}
