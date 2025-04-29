@@ -18,9 +18,9 @@ class ApplicationForm(forms.ModelForm):
         if honey:
             raise forms.ValidationError("Проверка на бота не пройдена.")
 
-        parent_name = cleaned_data.get('parent_name')
-        child_age = cleaned_data.get('child_age')
-        phone = cleaned_data.get('phone')
+        parent_name = cleaned_data.get('parent_name').strip().lower()
+        child_age = cleaned_data.get('child_age').strip()
+        phone = cleaned_data.get('phone').strip()
 
         today = timezone.now().date()
 
@@ -42,3 +42,27 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ['name', 'text']
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        honey = cleaned_data.get('user_notes')
+        if honey:
+            raise forms.ValidationError("Проверка на бота не пройдена.")
+
+        name = cleaned_data.get('name').strip().lower()
+        text = cleaned_data.get('text').strip().lower()
+
+        today = timezone.now().date()
+
+        if name and text:
+            if Review.objects.filter(
+                    created_at__date=today,
+                    name=name,
+                    text=text
+            ).exists():
+                raise forms.ValidationError(
+                    "Такой отзыв уже был отправлен сегодня."
+                )
+
+        return cleaned_data

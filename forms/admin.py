@@ -6,9 +6,9 @@ from .models import Application, Review
 @admin.register(Application)
 class ApplicationAdmin(admin.ModelAdmin):
     list_display = ('parent_name', 'created_at', 'is_processed',)
-    list_filter = ('created_at', 'is_processed')
-    search_fields = ('parent_name', 'message')
-    ordering = ('is_processed', '-created_at')
+    list_filter = ('created_at', 'is_processed',)
+    search_fields = ('parent_name', 'message',)
+    ordering = ('is_processed', '-created_at',)
 
     # Все поля кроме email и phone сделать readonly
     readonly_fields = [
@@ -28,7 +28,13 @@ class ApplicationAdmin(admin.ModelAdmin):
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('name', 'created_at', 'is_published')
-    list_filter = ('is_published', 'created_at')
-    search_fields = ('name', 'text')
-    list_editable = ('is_published',)
+    list_display = ('name', 'created_at', 'is_published',)
+    list_filter = ('is_published', 'created_at',)
+    search_fields = ('name', 'text',)
+    # list_editable = ('is_published',)
+    ordering = ('-created_at',)
+
+    readonly_fields = ['name', 'text']
+
+    def has_add_permission(self, request):
+        return False

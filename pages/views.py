@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from education.models import Course, Teacher
-from forms.forms import ApplicationForm
+from forms.forms import ApplicationForm, ReviewForm
 from info.models import Feature, Hero, About, ThankYouText, ContactInfo
 
 
@@ -13,16 +13,21 @@ def home(request):
 
     if request.method == 'POST':
         submit_type = request.POST.get('submit_type')
-        print(request.POST)
         if submit_type == 'application_form':
-
             application_form = ApplicationForm(request.POST)
             if application_form.is_valid():
                 application_form.save()
                 return redirect('/thanks/application/')
             context['application_form'] = application_form
+        elif submit_type == 'review_form':
+            review_form = ReviewForm(request.POST)
+            if review_form.is_valid():
+                review_form.save()
+                return redirect('/thanks/review/')
+            context['review_form'] = review_form
 
     return render(request, 'pages/home.html', context)
+
 
 def courses(request):
     all_courses = Course.objects.all()

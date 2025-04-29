@@ -10,7 +10,7 @@
             <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
                 {{ hero.description }}
             </p>
-            <a href="#form"
+            <a href="#application_form"
                class="inline-block bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold px-8 py-3 rounded-full transition-all shadow-lg hover:shadow-xl">
                 Оставить заявку
             </a>
@@ -44,7 +44,7 @@
         </div>
     </section>
 
-    <section id="form" class="py-24 bg-white fade-in">
+    <section id="application_form" class="py-24 bg-white fade-in">
         <div class="max-w-xl mx-auto px-4">
             <h3 class="text-3xl font-semibold text-center mb-8 text-gray-800">Оставьте заявку</h3>
             <form method="post"
@@ -123,15 +123,67 @@
 
         </div>
     </section>
+
+    <section id="review_form" class="pb-24 bg-white fade-in">
+        <div class="max-w-xl mx-auto px-4">
+            <h3 class="text-3xl font-semibold text-center mb-8 text-gray-800">Оставьте отзыв</h3>
+            <form method="post"
+                  class="bg-gray-50 p-8 rounded-2xl shadow space-y-6">
+                {% csrf_token %}
+
+                {% if review_form.non_field_errors %}
+                <div class="text-red-600 text-sm mb-4">
+                    {{ review_form.non_field_errors }}
+                </div>
+                {% endif %}
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Ваше имя</label>
+                    <input type="text"
+                           name="name"
+                           value="{{ review_form.name.value|default_if_none:'' }}"
+                           class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 {% if review_form.name.errors %}border-red-500{% endif %}"/>
+                    {% for error in review_form.name.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Отзыв</label>
+                    <textarea rows="4"
+                              name="text"
+                              class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 {% if review_form.text.errors %}border-red-500{% endif %}">{{ review_form.text.value|default_if_none:'' }}</textarea>
+                    {% for error in review_form.text.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <input type="text" name="user_notes" tabindex="-1" autocomplete="off"
+                       style="position:absolute; left:-9999px">
+
+                <button type="submit"
+                        name="submit_type" value="review_form"
+                        class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-md transition-all">
+                    Оставить отзыв
+                </button>
+            </form>
+        </div>
+    </section>
+
 </main>
 {% endblock %}
 
 {% block extra_js %}
 <script>
-    {% if form.errors %}
-        window.onload = function() {
-            document.getElementById('form').scrollIntoView({ behavior: 'smooth' });
-        };
-    {% endif %}
+    window.onload = function () {
+        {% if application_form.errors %}
+            document.getElementById('application_form')?.scrollIntoView({ behavior: 'smooth' });
+        {% endif %}
+
+        {% if review_form.errors %}
+            console.log(55555555555555555);
+            document.getElementById('review_form')?.scrollIntoView({ behavior: 'smooth' });
+        {% endif %}
+    };
 </script>
 {% endblock %}
