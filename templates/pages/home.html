@@ -51,9 +51,9 @@
                   class="bg-gray-50 p-8 rounded-2xl shadow space-y-6">
                 {% csrf_token %}
 
-                {% if form.non_field_errors %}
+                {% if application_form.non_field_errors %}
                 <div class="text-red-600 text-sm mb-4">
-                    {{ form.non_field_errors }}
+                    {{ application_form.non_field_errors }}
                 </div>
                 {% endif %}
 
@@ -61,9 +61,9 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">Имя родителя</label>
                     <input type="text"
                            name="parent_name"
-                           value="{{ form.parent_name.value|default_if_none:'' }}"
+                           value="{{ application_form.parent_name.value|default_if_none:'' }}"
                            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 {% if form.parent_name.errors %}border-red-500{% endif %}"/>
-                    {% for error in form.parent_name.errors %}
+                    {% for error in application_form.parent_name.errors %}
                     <p class="text-red-500 text-sm mt-1">{{ error }}</p>
                     {% endfor %}
                 </div>
@@ -72,9 +72,9 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">Возраст ребёнка</label>
                     <input type="number"
                            name="child_age"
-                           value="{{ form.child_age.value|default_if_none:'' }}"
+                           value="{{ application_form.child_age.value|default_if_none:'' }}"
                            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 {% if form.child_age.errors %}border-red-500{% endif %}"/>
-                    {% for error in form.child_age.errors %}
+                    {% for error in application_form.child_age.errors %}
                     <p class="text-red-500 text-sm mt-1">{{ error }}</p>
                     {% endfor %}
                 </div>
@@ -83,9 +83,9 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">Номер телефона</label>
                     <input type="tel"
                            name="phone"
-                           value="{{ form.phone.value|default_if_none:'' }}"
+                           value="{{ application_form.phone.value|default_if_none:'' }}"
                            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 {% if form.phone.errors %}border-red-500{% endif %}"/>
-                    {% for error in form.phone.errors %}
+                    {% for error in application_form.phone.errors %}
                     <p class="text-red-500 text-sm mt-1">{{ error }}</p>
                     {% endfor %}
                 </div>
@@ -94,9 +94,9 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
                     <input type="email"
                            name="email"
-                           value="{{ form.email.value|default_if_none:'' }}"
+                           value="{{ application_form.email.value|default_if_none:'' }}"
                            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 {% if form.email.errors %}border-red-500{% endif %}"/>
-                    {% for error in form.email.errors %}
+                    {% for error in application_form.email.errors %}
                     <p class="text-red-500 text-sm mt-1">{{ error }}</p>
                     {% endfor %}
                 </div>
@@ -106,13 +106,16 @@
                     <textarea rows="3"
                               name="message"
                               class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 {% if form.message.errors %}border-red-500{% endif %}">{{ form.message.value|default_if_none:'' }}</textarea>
-                    {% for error in form.message.errors %}
+                    {% for error in application_form.message.errors %}
                     <p class="text-red-500 text-sm mt-1">{{ error }}</p>
                     {% endfor %}
                 </div>
 
+                <input type="text" name="user_notes" tabindex="-1" autocomplete="off"
+                       style="position:absolute; left:-9999px">
+
                 <button type="submit"
-                        onclick="this.disabled=true; this.form.submit();"
+                        name="submit_type" value="application_form"
                         class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-md transition-all">
                     Отправить заявку
                 </button>

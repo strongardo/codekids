@@ -5,12 +5,19 @@ from .models import *
 
 
 class ApplicationForm(forms.ModelForm):
+    user_notes = forms.CharField(required=False)  # Защита от ботов
+
     class Meta:
         model = Application
         fields = ['parent_name', 'child_age', 'phone', 'email', 'message']
 
     def clean(self):
         cleaned_data = super().clean()
+
+        honey = cleaned_data.get('user_notes')
+        if honey:
+            raise forms.ValidationError("Проверка на бота не пройдена.")
+
         parent_name = cleaned_data.get('parent_name')
         child_age = cleaned_data.get('child_age')
         phone = cleaned_data.get('phone')

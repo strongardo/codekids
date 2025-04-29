@@ -12,11 +12,16 @@ def home(request):
     }
 
     if request.method == 'POST':
-        form = ApplicationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/thanks/application/')
-        context['form'] = form
+        submit_type = request.POST.get('submit_type')
+        print(request.POST)
+        if submit_type == 'application_form':
+
+            application_form = ApplicationForm(request.POST)
+            if application_form.is_valid():
+                application_form.save()
+                return redirect('/thanks/application/')
+            context['application_form'] = application_form
+
     return render(request, 'pages/home.html', context)
 
 def courses(request):
