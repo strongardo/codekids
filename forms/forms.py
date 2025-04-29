@@ -18,9 +18,13 @@ class ApplicationForm(forms.ModelForm):
         if honey:
             raise forms.ValidationError("Проверка на бота не пройдена.")
 
-        parent_name = cleaned_data.get('parent_name').strip().lower()
-        child_age = cleaned_data.get('child_age').strip()
-        phone = cleaned_data.get('phone').strip()
+        parent_name_raw = cleaned_data.get('parent_name')
+        child_age_raw = cleaned_data.get('child_age')
+        phone_raw = cleaned_data.get('phone')
+
+        parent_name = parent_name_raw.strip().lower() if parent_name_raw else ''
+        child_age = str(child_age_raw).strip() if child_age_raw is not None else ''
+        phone = phone_raw.strip() if phone_raw else ''
 
         today = timezone.now().date()
 
@@ -50,8 +54,11 @@ class ReviewForm(forms.ModelForm):
         if honey:
             raise forms.ValidationError("Проверка на бота не пройдена.")
 
-        name = cleaned_data.get('name').strip().lower()
-        text = cleaned_data.get('text').strip().lower()
+        name_raw = cleaned_data.get('name')
+        text_raw = cleaned_data.get('text')
+
+        name = name_raw.strip().lower() if name_raw else ''
+        text = text_raw.strip().lower() if text_raw else ''
 
         today = timezone.now().date()
 

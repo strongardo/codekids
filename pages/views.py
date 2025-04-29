@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from education.models import Course, Teacher
 from forms.forms import ApplicationForm, ReviewForm
+from forms.models import Review
 from info.models import Feature, Hero, About, ThankYouText, ContactInfo
 
 
@@ -9,6 +10,7 @@ def home(request):
         'hero': Hero.objects.first(),
         'features': Feature.objects.all(),
         'courses': Course.objects.filter(is_hit=True),
+        'reviews': Review.objects.all(),
     }
 
     if request.method == 'POST':
