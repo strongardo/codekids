@@ -17,7 +17,7 @@ def home(request):
             form.save()
             return redirect('/thanks/application/')
         context['form'] = form
-
+    return render(request, 'pages/home.html', context)
 
 def courses(request):
     all_courses = Course.objects.all()
