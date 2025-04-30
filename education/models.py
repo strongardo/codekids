@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -29,15 +30,16 @@ class Course(models.Model):
 
 
 class Teacher(models.Model):
+    email = models.EmailField(verbose_name="Электронная почта")
     first_name = models.CharField(max_length=100, verbose_name="Имя")
     last_name = models.CharField(max_length=100, verbose_name="Фамилия")
-    photo = models.ImageField(upload_to='teachers_photos/', null=True, blank=True, verbose_name="Фото")
-    bio = models.TextField(verbose_name="Описание", blank=True)
-    specialization = models.CharField(max_length=200, verbose_name="Специализация", null=True, blank=True)
     courses = models.ManyToManyField('Course', related_name='teachers', verbose_name="Курсы")
-    email = models.EmailField(verbose_name="Электронная почта", null=True, blank=True)
-    social_links = models.JSONField(default=dict, blank=True, verbose_name="Ссылки на социальные сети")
+    bio = models.TextField(verbose_name="Описание", blank=True)
+    specialization = models.CharField(max_length=200, verbose_name="Специализация")
+    photo = models.ImageField(upload_to='teachers_photos/', null=True, blank=True, verbose_name="Фото")
+    social_links = models.JSONField(default=dict, null=True, blank=True, verbose_name="Ссылки на социальные сети")
     start_date = models.DateField(verbose_name="Дата начала работы", null=True, blank=True)
+    account = models.OneToOneField(User, on_delete=models.PROTECT, null=True, blank=True, related_name='teacher')
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
@@ -45,3 +47,24 @@ class Teacher(models.Model):
     class Meta:
         verbose_name = "Преподаватель"
         verbose_name_plural = "Преподаватели"
+
+
+class Student(models.Model):
+    email = models.EmailField(verbose_name="Электронная почта")
+    phone = models.CharField(verbose_name="Номер телефона", max_length=20)
+    parent_name = models.CharField(max_length=100, verbose_name="Имя родителя")
+    courses = models.ManyToManyField('Course', related_name='students', verbose_name="Курсы")
+    teachers = models.ManyToManyField('Teacher', related_name='students', verbose_name="Преподаватели")
+    first_name = models.CharField(max_length=100, verbose_name="Имя ученика")
+    last_name = models.CharField(max_length=100, verbose_name="Фамилия ученика", null=True, blank=True)
+    birthday = models.DateField(verbose_name="День рождения", null=True, blank=True)
+    age = models.PositiveIntegerField(verbose_name="Возраст ученика", null=True, blank=True)
+    start_date = models.DateField(verbose_name="Дата начала обучения", null=True, blank=True)
+    account = models.OneToOneField(User, on_delete=models.PROTECT, null=True, blank=True, related_name='student')
+
+    def __str__(self):
+        return f"{self.first_name}"
+
+    class Meta:
+        verbose_name = "Ученик"
+        verbose_name_plural = "Ученики"
