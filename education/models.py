@@ -61,27 +61,33 @@ class Student(models.Model):
     account = models.OneToOneField(User, on_delete=models.PROTECT, null=True, blank=True, related_name='student')
 
     def __str__(self):
-        return f"{self.first_name}"
+        return f"{self.first_name} ({self.email})"
 
     class Meta:
         verbose_name = "Ученик"
         verbose_name_plural = "Ученики"
 
 
-class Enrollment(models.Model):  # или StudentCourse
-    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='enrollments')
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='enrollments')
-    teacher = models.ForeignKey('Teacher', on_delete=models.SET_NULL, null=True, blank=True)
+class Enrollment(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='enrollments', verbose_name="Ученик")
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='enrollments', verbose_name="Курс")
+    teacher = models.ForeignKey('Teacher', on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Преподаватель")
 
-    date_enrolled = models.DateField(auto_now_add=True)
-    is_active = models.BooleanField(default=True)
+    date_enrolled = models.DateField(auto_now_add=True, verbose_name="Дата записи")
+    is_active = models.BooleanField(default=True, verbose_name="Активна?")
 
-    next_lesson_date = models.DateTimeField(null=True, blank=True)
-    meet_link = models.URLField(blank=True)
-    balance_lessons = models.PositiveIntegerField(default=0)
-    last_homework = models.TextField(blank=True)
+    next_lesson_date = models.DateTimeField(null=True, blank=True, verbose_name="Дата следующего урока")
+    meet_link = models.URLField(blank=True, verbose_name="Ссылка на урок")
+    balance_lessons = models.PositiveIntegerField(default=0, verbose_name="Количество уроков")
+    last_homework = models.TextField(blank=True, verbose_name="Домашнее задание")
+
+    def __str__(self):
+        return f"Запись {self.student.first_name} ({self.student.email}) на {self.course.title}"
 
     class Meta:
+        verbose_name = "Подписка"
+        verbose_name_plural = "Подписки"
+
         constraints = [
             models.UniqueConstraint(fields=['student', 'course'], name='unique_student_course')
         ]
