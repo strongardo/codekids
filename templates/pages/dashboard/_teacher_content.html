@@ -1,0 +1,71 @@
+<div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl font-semibold text-gray-800 mb-8">
+        Добро пожаловать, {{ teacher_profile.first_name }}!
+    </h2>
+
+    <h3 class="text-2xl font-semibold text-gray-700 mb-4">Ваши ученики:</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% if enrollments %}
+            {% for enrollment in enrollments %}
+                <div class="bg-white rounded-2xl p-6 shadow-md mb-6">
+                    <h3 class="text-2xl font-semibold mb-3">
+                        {{ enrollment.student.first_name }} ({{ enrollment.course.title }})
+                    </h3>
+                    <p class="text-gray-600 mb-3">Номер телефона: {{ enrollment.student.phone }}</p>
+
+                    <form method="POST" class="space-y-3">
+                        {% csrf_token %}
+                        <input type="hidden" name="enrollment_id" value="{{ enrollment.id }}">
+
+                        <label class="block">
+                            <span class="text-gray-700">Следующее занятие:</span>
+                            <input type="datetime-local" name="next_lesson_date"
+                                   value="{{ enrollment.next_lesson_date|date:'Y-m-d\\TH:i' }}"
+                                   class="w-full border rounded p-2 mt-1"/>
+                            {% if enrollment.errors and 'next_lesson_date' in enrollment.errors %}
+                                <p class="text-sm text-red-600">{{ enrollment.errors.next_lesson_date.0 }}</p>
+                            {% endif %}
+                        </label>
+
+                        <label class="block">
+                            <span class="text-gray-700">Осталось занятий:</span>
+                            <input type="number" name="balance_lessons"
+                                   min="0"
+                                   value="{{ enrollment.balance_lessons }}"
+                                   class="w-full border rounded p-2 mt-1"/>
+                            {% if enrollment.errors and 'balance_lessons' in enrollment.errors %}
+                                <p class="text-sm text-red-600">{{ enrollment.errors.balance_lessons.0 }}</p>
+                            {% endif %}
+                        </label>
+
+                        <label class="block">
+                            <span class="text-gray-700">Домашнее задание:</span>
+                            <textarea name="last_homework"
+                                      class="w-full border rounded p-2 mt-1"
+                                      rows="2">{{ enrollment.last_homework }}</textarea>
+                            {% if enrollment.errors and 'last_homework' in enrollment.errors %}
+                                <p class="text-sm text-red-600">{{ enrollment.errors.last_homework.0 }}</p>
+                            {% endif %}
+                        </label>
+
+                        <label class="block">
+                            <span class="text-gray-700">Ссылка на Meet:</span>
+                            <input type="url" name="meet_link"
+                                   value="{{ enrollment.meet_link }}"
+                                   class="w-full border rounded p-2 mt-1"/>
+                            {% if enrollment.errors and 'meet_link' in enrollment.errors %}
+                                <p class="text-sm text-red-600">{{ enrollment.errors.meet_link.0 }}</p>
+                            {% endif %}
+                        </label>
+
+                        <button type="submit" class="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                            Сохранить
+                        </button>
+                    </form>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-gray-500">Пока нет учеников записанных на курсы к вам</p>
+        {% endif %}
+    </div>
+</div>

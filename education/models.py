@@ -71,7 +71,7 @@ class Student(models.Model):
 class Enrollment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='enrollments', verbose_name="Ученик")
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='enrollments', verbose_name="Курс")
-    teacher = models.ForeignKey('Teacher', on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Преподаватель")
+    teacher = models.ForeignKey('Teacher', on_delete=models.SET_NULL, related_name='enrollments', null=True, blank=True, verbose_name="Преподаватель")
 
     date_enrolled = models.DateField(auto_now_add=True, verbose_name="Дата записи")
     is_active = models.BooleanField(default=True, verbose_name="Активна?")

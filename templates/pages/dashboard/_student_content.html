@@ -5,7 +5,7 @@
 
     <h3 class="text-2xl font-semibold text-gray-700 mb-4">Вы записаны на:</h3>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {% if student_profile.courses.all %}
+        {% if student_profile.enrollments.all %}
 
         {% for enrollment in student_profile.enrollments.all %}
         <div class="bg-white rounded-2xl p-6 shadow-md mb-6">

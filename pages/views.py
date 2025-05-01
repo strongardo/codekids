@@ -1,5 +1,8 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from education.models import Course, Teacher
+
+from education.forms import EnrollmentUpdateForm
+from education.models import Course, Teacher, Enrollment
 from forms.forms import ApplicationForm, ReviewForm
 from forms.models import Review
 from info.models import Feature, Hero, About, ThankYouText, ContactInfo
@@ -69,6 +72,7 @@ def thanks(request, page_type):
     })
 
 
+@login_required
 def dashboard(request):
     context = {}
 
@@ -78,7 +82,23 @@ def dashboard(request):
     if role == 'student':
         context['student_profile'] = request.user.student
     elif role == 'teacher':
-        context['teacher_profile'] = request.user.teacher
+        teacher = request.user.teacher
+        enrollments = teacher.enrollments.select_related('student', 'course')
+        context['teacher_profile'] = teacher
+        context['enrollments'] = enrollments
+
+        if request.method == 'POST':
+            enrollment_id = request.POST.get('enrollment_id')
+            enrollment = get_object_or_404(Enrollment, id=enrollment_id, teacher=teacher)
+            form = EnrollmentUpdateForm(request.POST, instance=enrollment)
+            if form.is_valid():
+                form.save()
+                return redirect('dashboard')
+            else:
+                for enrollment in enrollments:
+                    if enrollment.id == int(enrollment_id):
+                        enrollment.errors = form.errors
+                context['enrollments'] = enrollments
 
     return render(request, 'pages/dashboard/dashboard.html', context)
 
