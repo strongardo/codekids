@@ -57,12 +57,8 @@ def register(request):
     return render(request, 'pages/register.html')
 
 
-def login(request):
+def login_form(request):
     return render(request, 'pages/login.html')
-
-
-def dashboard(request):
-    return render(request, 'pages/dashboard.html')
 
 
 def thanks(request, page_type):
@@ -71,3 +67,26 @@ def thanks(request, page_type):
     return render(request, 'pages/thanks.html', {
         'thank_you': thank_you,
     })
+
+
+def dashboard(request):
+    context = {}
+
+    role = get_user_role(request.user)
+    context['role'] = role
+
+    if role == 'student':
+        context['student_profile'] = request.user.student
+    elif role == 'teacher':
+        context['teacher_profile'] = request.user.teacher
+
+    return render(request, 'pages/dashboard/dashboard.html', context)
+
+
+def get_user_role(user):
+    if hasattr(user, 'student'):
+        return 'student'
+    elif hasattr(user, 'teacher'):
+        return 'teacher'
+    else:
+        return 'unknown'

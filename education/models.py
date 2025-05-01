@@ -53,8 +53,6 @@ class Student(models.Model):
     email = models.EmailField(verbose_name="Электронная почта")
     phone = models.CharField(verbose_name="Номер телефона", max_length=20)
     parent_name = models.CharField(max_length=100, verbose_name="Имя родителя")
-    courses = models.ManyToManyField('Course', related_name='students', verbose_name="Курсы")
-    teachers = models.ManyToManyField('Teacher', related_name='students', verbose_name="Преподаватели")
     first_name = models.CharField(max_length=100, verbose_name="Имя ученика")
     last_name = models.CharField(max_length=100, verbose_name="Фамилия ученика", null=True, blank=True)
     birthday = models.DateField(verbose_name="День рождения", null=True, blank=True)
@@ -68,3 +66,25 @@ class Student(models.Model):
     class Meta:
         verbose_name = "Ученик"
         verbose_name_plural = "Ученики"
+
+
+class Enrollment(models.Model):  # или StudentCourse
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='enrollments')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='enrollments')
+    teacher = models.ForeignKey('Teacher', on_delete=models.SET_NULL, null=True, blank=True)
+
+    date_enrolled = models.DateField(auto_now_add=True)
+    is_active = models.BooleanField(default=True)
+
+    next_lesson_date = models.DateTimeField(null=True, blank=True)
+    meet_link = models.URLField(blank=True)
+    balance_lessons = models.PositiveIntegerField(default=0)
+    last_homework = models.TextField(blank=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['student', 'course'], name='unique_student_course')
+        ]
+
+    def is_paid(self):
+        return self.balance_lessons > 0

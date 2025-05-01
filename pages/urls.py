@@ -6,8 +6,7 @@ urlpatterns = [
     path('courses/', courses, name='courses'),
     path('about/', about, name='about'),
     path('contacts/', contacts, name='contacts'),
-    path('register/', register, name='register'),
-    path('login/', login, name='login'),
+    path('login_form/', login_form, name='login_form'),
     path('dashboard/', dashboard, name='dashboard'),
     path('thanks/<str:page_type>/', thanks, name='thanks'),
 ]

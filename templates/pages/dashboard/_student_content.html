@@ -1,0 +1,26 @@
+<div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl font-semibold text-gray-800 mb-8">
+        Добро пожаловать, {{ student_profile.first_name }}!
+    </h2>
+
+    <h3 class="text-2xl font-semibold text-gray-700 mb-4">Вы записаны на:</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% if student_profile.courses.all %}
+
+        {% for enrollment in student_profile.enrollments.all %}
+        <div class="bg-white rounded-2xl p-6 shadow-md mb-6">
+            <h3 class="text-2xl font-semibold mb-3">{{ enrollment.course.title }}</h3>
+            <p class="text-gray-600 mb-3">
+                Преподаватель: {{ enrollment.teacher.first_name }} {{ enrollment.teacher.last_name }}
+            </p>
+            <p class="text-gray-600">Следующее занятие: {{ enrollment.next_lesson_date|date:"d M H:i" }}</p>
+            <p class="text-gray-600 mb-3">Осталось занятий: {{ enrollment.balance_lessons }}</p>
+            <p class="text-gray-600 mb-3">Домашнее задание: {{ enrollment.last_homework }}</p>
+            <a href="{{ enrollment.meet_link }}" class="text-blue-500 underline">Перейти к уроку</a>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p class="text-gray-500">Вы ещё не записаны ни на один курс.</p>
+        {% endif %}
+    </div>
+</div>

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Личный кабинет - CodeKids{% endblock %}
+{% block content %}
+<main>
+    <section class="py-20">
+
+        {% if role == 'student' %}
+        {% include 'pages/dashboard/_student_content.html' %}
+        {% elif role == 'teacher' %}
+        {% include 'pages/dashboard/_teacher_content.html' %}
+        {% else%}
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-8">
+                Вы пока не являетесь ни учеником, ни преподавателем!
+            </h2>
+            <a href="/#application_form"
+               class="inline-block bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold px-8 py-3 rounded-full transition-all shadow-lg hover:shadow-xl">
+                Оставить заявку
+            </a>
+        </div>
+        {% endif %}
+    </section>
+</main>
+{% endblock %}
