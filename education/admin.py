@@ -23,8 +23,7 @@ class TeacherAdmin(admin.ModelAdmin):
 @admin.register(Enrollment)
 class EnrollmentAdmin(admin.ModelAdmin):
     list_display = (
-        'student', 'course', 'teacher',
-        'next_lesson_date', 'balance_lessons', 'is_active'
+        'student', 'course', 'teacher', 'balance_lessons', 'is_active'
     )
     list_filter = ('is_active', 'course', 'teacher')
     search_fields = ('student__account__username', 'course__title')
@@ -35,11 +34,11 @@ class EnrollmentAdmin(admin.ModelAdmin):
         ('Основная информация', {
             'fields': ('student', 'course', 'teacher', 'is_active')
         }),
-        ('Занятия и доступ', {
-            'fields': ('next_lesson_date', 'balance_lessons', 'meet_link')
+        ('Расписание', {
+            'fields': ('schedule_text',)
         }),
-        ('Домашнее задание', {
-            'fields': ('last_homework',)
+        ('Занятия и доступ', {
+            'fields': ('balance_lessons', 'last_homework', 'meet_link')
         }),
         ('Служебное', {
             'fields': ('date_enrolled',),

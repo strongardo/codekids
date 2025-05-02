@@ -13,9 +13,9 @@
             <p class="text-gray-600 mb-3">
                 Преподаватель: {{ enrollment.teacher.first_name }} {{ enrollment.teacher.last_name }}
             </p>
-            <p class="text-gray-600">Следующее занятие: {{ enrollment.next_lesson_date|date:"d M H:i" }}</p>
+            <p class="text-gray-600 mb-3">Расписание: {{ enrollment.schedule_text|linebreaksbr|default:"не указано" }}</p>
             <p class="text-gray-600 mb-3">Осталось занятий: {{ enrollment.balance_lessons }}</p>
-            <p class="text-gray-600 mb-3">Домашнее задание: {{ enrollment.last_homework }}</p>
+            <p class="text-gray-600 mb-3">Домашнее задание: {{ enrollment.last_homework|linebreaksbr }}</p>
             <a href="{{ enrollment.meet_link }}" class="text-blue-500 underline">Перейти к уроку</a>
         </div>
         {% endfor %}

@@ -1,5 +1,6 @@
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from education.forms import EnrollmentUpdateForm
 from education.models import Course, Teacher, Enrollment
@@ -52,7 +53,6 @@ def about(request):
 
 def contacts(request):
     contact_info = ContactInfo.objects.all().first()
-    print(contact_info.phone)
     return render(request, 'pages/contacts.html', {'contacts': contact_info})
 
 
@@ -93,12 +93,15 @@ def dashboard(request):
             form = EnrollmentUpdateForm(request.POST, instance=enrollment)
             if form.is_valid():
                 form.save()
+                messages.success(request, 'Сохранено!')
                 return redirect('dashboard')
             else:
                 for enrollment in enrollments:
                     if enrollment.id == int(enrollment_id):
                         enrollment.errors = form.errors
                 context['enrollments'] = enrollments
+
+                messages.error(request, 'Не сохранено! Исправьте ошибки ниже!')
 
     return render(request, 'pages/dashboard/dashboard.html', context)
 

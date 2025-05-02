@@ -76,7 +76,7 @@ class Enrollment(models.Model):
     date_enrolled = models.DateField(auto_now_add=True, verbose_name="Дата записи")
     is_active = models.BooleanField(default=True, verbose_name="Активна?")
 
-    next_lesson_date = models.DateTimeField(null=True, blank=True, verbose_name="Дата следующего урока")
+    schedule_text = models.TextField(max_length=500, blank=True, verbose_name="Расписание")
     meet_link = models.URLField(blank=True, verbose_name="Ссылка на урок")
     balance_lessons = models.PositiveIntegerField(default=0, verbose_name="Количество уроков")
     last_homework = models.TextField(blank=True, verbose_name="Домашнее задание")
