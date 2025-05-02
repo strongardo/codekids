@@ -15,6 +15,7 @@ def home(request):
         'features': Feature.objects.all(),
         'courses': Course.objects.filter(is_hit=True),
         'reviews': Review.objects.all(),
+        'contacts': ContactInfo.objects.all().first()
     }
 
     if request.method == 'POST':
@@ -49,11 +50,6 @@ def about(request):
         'teachers': teachers,
         'about_info': about_info,
     })
-
-
-def contacts(request):
-    contact_info = ContactInfo.objects.all().first()
-    return render(request, 'pages/contacts.html', {'contacts': contact_info})
 
 
 def register(request):

@@ -214,6 +214,73 @@
         </div>
     </section>
 
+    <section id="contacts" class="py-24 bg-gradient-to-r from-blue-50 to-white fade-in">
+        <div class="max-w-xl mx-auto px-4">
+            <h3 class="text-3xl font-semibold text-center mb-10 text-gray-800">Контакты</h3>
+
+            <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="space-y-4 text-gray-700 text-base">
+                    {% if contacts.phone %}
+                    <div class="flex items-center">
+                        <i class="fas fa-phone-alt text-blue-600 w-6 text-lg mr-3"></i>
+                        <a href="tel:{{ contacts.phone }}" class="hover:text-blue-600">{{ contacts.phone }}</a>
+                    </div>
+                    {% endif %}
+
+                    {% if contacts.email %}
+                    <div class="flex items-center">
+                        <i class="fas fa-envelope text-blue-600 w-6 text-lg mr-3"></i>
+                        <a href="mailto:{{ contacts.email }}" class="hover:text-blue-600">{{ contacts.email }}</a>
+                    </div>
+                    {% endif %}
+
+                    {% if contacts.whatsapp_number %}
+                    <div class="flex items-center">
+                        <i class="fab fa-whatsapp text-green-500 w-6 text-lg mr-3"></i>
+                        <a href="https://wa.me/{{ contacts.whatsapp_number }}" target="_blank"
+                           class="hover:text-green-600">
+                            {{ contacts.whatsapp_number }}
+                        </a>
+                    </div>
+                    {% endif %}
+
+                    {% if contacts.telegram_login %}
+                    <div class="flex items-center">
+                        <i class="fab fa-telegram-plane text-blue-400 w-6 text-lg mr-3"></i>
+                        <a href="https://t.me/{{ contacts.telegram_login }}" target="_blank"
+                           class="hover:text-blue-500">
+                            @{{ contacts.telegram_login }}
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+
+                {% if contacts.instagram_link or contacts.vk_link or contacts.youtube_link %}
+                <div class="mt-8 border-t pt-6 text-center">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-4">Мы в соцсетях</h4>
+                    <div class="flex justify-center space-x-6 text-3xl">
+                        {% if contacts.instagram_link %}
+                        <a href="{{ contacts.instagram_link }}" target="_blank" class="hover:opacity-80">
+                            <i class="fab fa-instagram text-pink-500"></i>
+                        </a>
+                        {% endif %}
+                        {% if contacts.vk_link %}
+                        <a href="{{ contacts.vk_link }}" target="_blank" class="hover:opacity-80">
+                            <i class="fab fa-vk text-blue-600"></i>
+                        </a>
+                        {% endif %}
+                        {% if contacts.youtube_link %}
+                        <a href="{{ contacts.youtube_link }}" target="_blank" class="hover:opacity-80">
+                            <i class="fab fa-youtube text-red-600"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
 
 </main>
 {% endblock %}
