@@ -8,14 +8,27 @@
 
             <form method="post" action="{% url 'login' %}">
                 {% csrf_token %}
-                <input type="email" name="username" placeholder="Email" class="w-full p-4 mb-4 border border-gray-300 rounded-xl"/>
-                <input type="password" name="password" placeholder="Пароль" class="w-full p-4 mb-4 border border-gray-300 rounded-xl"/>
+
+                {% if form.non_field_errors %}
+                <div class="mb-4 text-red-600 text-sm bg-red-100 rounded p-3">
+                    {% for error in form.non_field_errors %}
+                    {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <input type="email" name="username" placeholder="Email"
+                       class="w-full p-4 mb-4 border border-gray-300 rounded-xl"/>
+                <input type="password" name="password" placeholder="Пароль"
+                       class="w-full p-4 mb-4 border border-gray-300 rounded-xl"/>
 
                 <button type="submit"
-                        class="w-full py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">Войти
+                        class="w-full py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">
+                    Войти
                 </button>
             </form>
         </div>
     </div>
 </main>
+
 {% endblock %}
