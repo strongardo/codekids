@@ -1,33 +1,27 @@
-<div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 mb-10">
-    <div class="flex flex-col gap-4">
-        <h3 class="text-2xl font-bold text-blue-700 tracking-tight">
-            {{ course.title }}
-        </h3>
+<div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 border border-gray-100 mb-8 p-6 md:p-8 text-left">
+    <!-- Заголовок -->
+    <h3 class="text-xl md:text-2xl font-semibold text-blue-700 mb-3">
+        {{ course.title }}
+    </h3>
 
-        <p class="text-gray-700 leading-relaxed">
-            {{ course.description }}
-        </p>
+    <!-- Описание -->
+    <p class="text-gray-600 text-sm md:text-base leading-relaxed mb-4">
+        {{ course.description }}
+    </p>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-600">
-            <div>
-                <span class="font-medium text-gray-800">Уровень:</span>
-                {{ course.get_level_display }}
-            </div>
-            <div>
-                <span class="font-medium text-gray-800">Длительность:</span>
-                {{ course.duration }} занятий
-            </div>
-            <div>
-                <span class="font-medium text-gray-800">Мин. возраст:</span>
-                {{ course.min_age }} лет
-            </div>
+    <!-- Характеристики курса -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-gray-700">
+        <div>
+            <span class="font-medium text-gray-800">Уровень:</span>
+            {{ course.get_level_display }}
         </div>
-
-        <div class="pt-4">
-            <a href="#"
-               class="inline-block px-4 py-2 rounded-xl bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition">
-                Подробнее
-            </a>
+        <div>
+            <span class="font-medium text-gray-800">Длительность:</span>
+            {{ course.duration }} занятий
+        </div>
+        <div>
+            <span class="font-medium text-gray-800">Мин. возраст:</span>
+            {{ course.min_age }} лет
         </div>
     </div>
 </div>

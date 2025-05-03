@@ -1,11 +1,8 @@
-<div class="bg-white p-6 rounded-2xl shadow hover:shadow-md transition">
-    <h4 class="text-lg font-semibold text-blue-600 mb-1">{{ course.title }}</h4>
-    <p class="text-gray-600">{{ course.description }}</p>
-
-    <div class="pt-4">
-        <a href="#"
-           class="inline-block px-4 py-2 rounded-xl bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition">
-            Подробнее
-        </a>
-    </div>
+<div class="relative bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300 border border-gray-100 flex flex-col h-full">
+    <h4 class="text-lg font-semibold text-blue-600 mb-3 flex items-center gap-2">
+        {{ course.title }}
+    </h4>
+    <p class="text-gray-600 text-sm leading-relaxed line-clamp-4">
+        {{ course.description }}
+    </p>
 </div>

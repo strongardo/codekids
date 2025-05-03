@@ -38,7 +38,7 @@ class Feature(models.Model):
 class Hero(models.Model):
     top_text = models.CharField(max_length=100, verbose_name='Верхняя часть основного текста', default='')
     bottom_text = models.CharField(max_length=100, verbose_name='Нижняя часть основного текста', default='')
-    description = models.CharField(max_length=200, verbose_name='Описание')
+    description = models.TextField(max_length=200, verbose_name='Описание')
 
     class Meta:
         verbose_name = "Hero-блок"
