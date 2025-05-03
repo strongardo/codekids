@@ -135,44 +135,26 @@
     <section id="reviews" class="pb-20 bg-white fade-in">
         <div class="max-w-6xl mx-auto px-4 text-center">
             <h3 class="text-3xl font-semibold mb-12 text-gray-800">Отзывы наших пользователей</h3>
-
-            <!-- Slider Container -->
-            <div id="reviewSlider" class="relative">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Slide Item -->
-                    {% for review in reviews %}
-                    <div class="review-slide">
-                        <div class="bg-gray-100 p-6 rounded-lg shadow-md">
-                            <p class="text-lg font-semibold mb-4">{{ review.name }}</p>
-                            <p class="text-gray-700">{{ review.text }}</p>
-                        </div>
+            <div id="reviewSlider" class="relative overflow-hidden">
+                <div class="px-12">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {% for review in reviews %}
+                        {% include 'partials/review_slide.html' %}
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                 </div>
-
-                <!-- Slider Navigation -->
-                <div class="absolute inset-y-0 left-0 flex items-center justify-center w-12 bg-gray-200 bg-opacity-50 cursor-pointer hover:bg-opacity-75"
+                <div class="absolute inset-y-0 left-0 flex items-center justify-center w-12 bg-opacity-50 hover:bg-opacity-75 cursor-pointer z-10"
                      id="prevSlide">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                         class="h-6 w-6 text-gray-800">
-                        <path fill-rule="evenodd"
-                              d="M10.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L7.414 9H16a1 1 0 110 2h-8.586l2.293 2.293a1 1 0 010 1.414z"
-                              clip-rule="evenodd"/>
-                    </svg>
+                    <i class="fas fa-chevron-left text-xl text-gray-800"></i>
                 </div>
-                <div class="absolute inset-y-0 right-0 flex items-center justify-center w-12 bg-gray-200 bg-opacity-50 cursor-pointer hover:bg-opacity-75"
+                <div class="absolute inset-y-0 right-0 flex items-center justify-center w-12 bg-opacity-50 hover:bg-opacity-75 cursor-pointer z-10"
                      id="nextSlide">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                         class="h-6 w-6 text-gray-800">
-                        <path fill-rule="evenodd"
-                              d="M9.293 4.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L12.586 11H4a1 1 0 010-2h8.586L9.293 5.707a1 1 0 010-1.414z"
-                              clip-rule="evenodd"/>
-                    </svg>
+                    <i class="fas fa-chevron-right text-xl text-gray-800"></i>
                 </div>
             </div>
 
+
             <div class="max-w-xl mx-auto mt-12 text-left">
-                <!-- Review Form -->
                 <form method="post" id="review_form" class="bg-gray-50 p-8 rounded-2xl shadow space-y-6 mt-12">
                     {% csrf_token %}
 
@@ -186,6 +168,7 @@
                         <label class="block text-sm font-medium text-gray-700 mb-1">Ваше имя</label>
                         <input type="text" name="name" value="{{ review_form.name.value|default_if_none:'' }}"
                                required minlength="2"
+                               placeholder="Елена (мама Ивана)"
                                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 {% if review_form.name.errors %}border-red-500{% endif %}"/>
                         {% for error in review_form.name.errors %}
                         <p class="text-red-500 text-sm mt-1">{{ error }}</p>
@@ -196,6 +179,7 @@
                         <label class="block text-sm font-medium text-gray-700 mb-1">Отзыв</label>
                         <textarea rows="4" name="text"
                                   required minlength="10"
+                                  placeholder="Честный отзыв :)"
                                   class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 {% if review_form.text.errors %}border-red-500{% endif %}">{{ review_form.text.value|default_if_none:'' }}</textarea>
                         {% for error in review_form.text.errors %}
                         <p class="text-red-500 text-sm mt-1">{{ error }}</p>
