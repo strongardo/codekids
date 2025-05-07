@@ -22,6 +22,10 @@ venv/
 # Media files (user uploads)
 media/
 
+# Static/media output
+staticfiles/
+mediafiles/
+
 # === IDEs ===
 .idea/
 .vscode/
@@ -29,7 +33,4 @@ media/
 # === OS Files ===
 .DS_Store
 Thumbs.db
-
-# === Static files ===
-# /static/
 
