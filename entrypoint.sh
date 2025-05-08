@@ -8,6 +8,9 @@ while ! nc -z db 5432; do
 done
 echo "PostgreSQL готов"
 
+echo "Создаём миграции..."
+python manage.py makemigrations --noinput
+
 echo "Применяем миграции..."
 python manage.py migrate
 
