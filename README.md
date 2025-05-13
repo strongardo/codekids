@@ -28,7 +28,7 @@
 - [Docker](https://www.docker.com/)
 
 Клонируйте репозиторий:
-<pre>git clone https://github.com/strongardo/codekids.git```</pre>  
+<pre>git clone https://github.com/strongardo/codekids.git</pre>  
 
 Создайте файл .env на основе шаблона:
 <pre>cp .env.example .env</pre>
