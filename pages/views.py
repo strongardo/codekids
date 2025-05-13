@@ -14,7 +14,7 @@ def home(request):
         'hero': Hero.objects.first(),
         'features': Feature.objects.all(),
         'courses': Course.objects.filter(is_hit=True),
-        'reviews': Review.objects.all(),
+        'reviews': Review.objects.filter(is_published=True),
         'contacts': ContactInfo.objects.all().first()
     }
 

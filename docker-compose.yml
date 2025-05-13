@@ -3,10 +3,8 @@ version: '3.9'
 services:
   db:
     image: postgres:15
-    environment:
-      POSTGRES_DB: codekids_db
-      POSTGRES_USER: codekids_user
-      POSTGRES_PASSWORD: codekids_pass
+    env_file:
+      - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -14,21 +12,15 @@ services:
     build: .
     volumes:
       - .:/app
-      - static_volume:/app/staticfiles
-      - media_volume:/app/mediafiles
+      - ./staticfiles:/app/staticfiles
+      - ./mediafiles:/app/mediafiles
     depends_on:
       - db
-    environment:
-      - DEBUG=0
-      - DB_NAME=codekids_db
-      - DB_USER=codekids_user
-      - DB_PASSWORD=codekids_pass
-      - DB_HOST=db
-      - DB_PORT=5432
+    env_file:
+      - .env
     ports:
       - "8000:8000"
 
 volumes:
   postgres_data:
-  static_volume:
-  media_volume:
+
