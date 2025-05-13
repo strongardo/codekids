@@ -1,0 +1,25 @@
+# Все текстовые файлы — нормализуем в LF при коммите, независимо от ОС
+* text=auto eol=lf
+
+# Скрипты — строго LF (необходимы для работы в Linux)
+*.sh text eol=lf
+
+# Python-файлы — тоже LF, хотя и не критично
+*.py text eol=lf
+
+# HTML, CSS, JS — LF
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+
+# Ignore binary files (Git не будет пытаться их "сравнивать")
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.gif binary
+*.pdf binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+*.eot binary
