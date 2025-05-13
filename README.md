@@ -24,16 +24,24 @@
 
 ## Как запустить
 
-Убедитесь, что у вас установлены:
-- Docker
-- Docker Compose
+Убедитесь, что у вас установлен:
+- [Docker](https://www.docker.com/)
 
-```bash
-git clone https://github.com/strongardo/codekids/
-docker compose up --build
+Клонируйте репозиторий:
+<pre>git clone https://github.com/strongardo/codekids.git```</pre>  
+
+Создайте файл .env на основе шаблона:
+<pre>cp .env.example .env</pre>
+И отредактируйте его при необходимости (например, укажите секретный ключ, пароль к БД и хосты)  
+
+Сборка и запуск контейнеров:
+<pre>docker compose up --build</pre>  
+
+Создайте суперпользователя:
+<pre>docker compose exec web python manage.py createsuperuser</pre>  
 
 Перейдите в браузере по адресу:
-http://localhost:8000
+http://localhost:8000  
 Доступ к админке
 http://localhost:8000/admin/
 
