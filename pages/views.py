@@ -61,7 +61,13 @@ def login_form(request):
 
 
 def thanks(request, page_type):
-    thank_you = get_object_or_404(ThankYouText, type=page_type)
+    thank_you = (
+            ThankYouText.objects.filter(type=page_type).first()
+            or ThankYouText(
+        title="Благодарим!",
+        text="Спасибо, что вы с нами!"
+    )
+    )
 
     return render(request, 'pages/thanks.html', {
         'thank_you': thank_you,
