@@ -1,15 +1,13 @@
 #!/bin/sh
 
-set -e  # Прерывать выполнение скрипта при ошибке
+set -e
 
 echo "Ожидание PostgreSQL..."
 while ! nc -z db 5432; do
-  sleep 0.5
+    sleep 1
 done
-echo "PostgreSQL готов"
 
-echo "Создаём миграции..."
-python manage.py makemigrations --noinput
+echo "PostgreSQL готов"
 
 echo "Применяем миграции..."
 python manage.py migrate
@@ -18,4 +16,5 @@ echo "Собираем статику..."
 python manage.py collectstatic --noinput
 
 echo "Запуск Gunicorn..."
-exec gunicorn codekids.wsgi:application --bind 0.0.0.0:8000
+exec gunicorn config.wsgi:application \
+    --bind 0.0.0.0:8000
