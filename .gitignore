@@ -1,37 +1,94 @@
-# === Python ===
+# ==========================================
+# Python
+# ==========================================
+
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.log
+*.py[cod]
+*$py.class
+*.so
 
-# === Django ===
-*.sqlite3
+# ==========================================
+# Virtual Environments
+# ==========================================
 
-# Migrations, but keep __init__.py
-*/migrations/*.py
-!*/migrations/__init__.py
+venv/
+.venv/
+env/
 
-# Environment
+# ==========================================
+# Environment Variables & Secrets
+# ==========================================
+
 .env
 .env.*
 !.env.example
 
-# Virtual environment
-venv/
+.secrets/
+certs/
 
-# Media files (user uploads)
+# ==========================================
+# Databases
+# ==========================================
+
+*.sqlite3
+
+# ==========================================
+# Django Static & Media Files
+# ==========================================
+
 media/
+static_root/
 
-# Static/media output
-staticfiles/
-mediafiles/
+staticfiles/*
+!staticfiles/.gitkeep
 
-# === IDEs ===
+mediafiles/*
+!mediafiles/.gitkeep
+
+# ==========================================
+# Testing & Coverage
+# ==========================================
+
+.pytest_cache/
+.tox/
+
+.coverage
+htmlcov/
+
+# ==========================================
+# Logs
+# ==========================================
+
+*.log
+
+# ==========================================
+# IDEs & Editors
+# ==========================================
+
 .idea/
 .vscode/
 
-# === OS Files ===
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# ==========================================
+# Docker
+# ==========================================
+
+docker-compose.override.yml
+
+# ==========================================
+# Operating System Files
+# ==========================================
+
 .DS_Store
 Thumbs.db
 
+# ==========================================
+# Local Binaries
+# ==========================================
+
+tailwindcss-windows-x64.exe
