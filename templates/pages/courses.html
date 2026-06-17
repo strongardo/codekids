@@ -2,9 +2,15 @@
 {% block title %}Курсы - CodeKids{% endblock %}
 {% block content %}
 <main>
-    <section id="courses" class="py-20 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-semibold mb-12 text-gray-800">Наши курсы</h2>
+    <div class="bg-gradient-to-r from-indigo-600 to-violet-600 py-16">
+        <div class="max-w-6xl mx-auto px-4">
+            <h1 class="text-4xl font-extrabold text-white">Наши курсы</h1>
+            <p class="text-white/70 mt-2">Программы для любого уровня подготовки и возраста</p>
+        </div>
+    </div>
+
+    <section id="courses" class="py-20 bg-white fade-in">
+        <div class="max-w-4xl mx-auto px-4">
             {% for course in courses %}
             {% include 'partials/course_card.html' %}
             {% endfor %}

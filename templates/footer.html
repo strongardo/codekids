@@ -1,6 +1,37 @@
-<footer class="bg-gray-900 text-white py-10">
-    <div class="max-w-6xl mx-auto px-4 text-center">
-        <p class="text-sm mb-2">© 2026 CodeKids — Школа программирования для детей</p>
-        <p class="text-sm">Email: hello@codekids.ru | Тел: +7 (900) 000-00-00</p>
+<footer class="bg-gray-950 text-white">
+    <div class="max-w-6xl mx-auto px-4 pt-16 pb-10">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+            <div>
+                <span class="text-2xl font-extrabold gradient-text">CodeKids</span>
+                <p class="text-gray-400 mt-4 text-sm leading-relaxed">
+                    Школа программирования для детей от 7 до 17 лет. Учим думать, создавать и побеждать
+                </p>
+            </div>
+            <div>
+                <h5 class="font-semibold text-white mb-5">Навигация</h5>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li><a href="{% url 'home' %}" class="hover:text-indigo-400 transition">Главная</a></li>
+                    <li><a href="{% url 'courses' %}" class="hover:text-indigo-400 transition">Курсы</a></li>
+                    <li><a href="{% url 'about' %}" class="hover:text-indigo-400 transition">О нас</a></li>
+                    <li><a href="{% url 'home' %}#application_form" class="hover:text-indigo-400 transition">Записаться</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-semibold text-white mb-5">Контакты</h5>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li class="flex items-center gap-2">
+                        <i class="fas fa-envelope w-4 text-indigo-400"></i>
+                        hello@codekids.ru
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fas fa-phone w-4 text-indigo-400"></i>
+                        +7 (900) 000-00-00
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-white/10 pt-8 text-center text-sm text-gray-500">
+            © 2026 CodeKids — Школа программирования для детей
+        </div>
     </div>
 </footer>

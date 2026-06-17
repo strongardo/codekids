@@ -1,25 +1,33 @@
 {% extends 'base.html' %}
 {% block title %}О нас - CodeKids{% endblock %}
 {% block content %}
-
 <main>
-    <section id="about" class="py-20 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-semibold mb-12 text-gray-800">О нас</h2>
-            <p class="text-lg text-gray-600 mb-8">
-                {{ about_info.about_text }}
-                <br><br>
-                {{ about_info.mission_text }}
-            </p>
+    <div class="bg-gradient-to-r from-indigo-600 to-violet-600 py-16">
+        <div class="max-w-6xl mx-auto px-4">
+            <h1 class="text-4xl font-extrabold text-white">О нас</h1>
+            <p class="text-white/70 mt-2">Узнайте больше о нашей школе</p>
+        </div>
+    </div>
+
+    <section id="about" class="py-20 bg-white fade-in">
+        <div class="max-w-3xl mx-auto px-4">
+            <div class="bg-gradient-to-br from-slate-50 to-indigo-50/40 rounded-3xl p-10 border border-gray-100">
+                <span class="inline-block bg-indigo-50 text-indigo-600 text-sm font-semibold px-4 py-1.5 rounded-full mb-6">Наша история</span>
+                <p class="text-gray-700 leading-relaxed text-lg">{{ about_info.about_text }}</p>
+                <div class="border-t border-indigo-100 pt-8 mt-8">
+                    <span class="inline-block bg-violet-50 text-violet-600 text-sm font-semibold px-4 py-1.5 rounded-full mb-6">Наша миссия</span>
+                    <p class="text-gray-700 leading-relaxed text-lg">{{ about_info.mission_text }}</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="teachers" class="py-20">
+    <section id="teachers" class="py-20 bg-gradient-to-br from-slate-50 to-indigo-50/40 fade-in">
         <div class="max-w-6xl mx-auto px-4 text-center">
-            <h3 class="text-3xl font-semibold mb-12 text-gray-800">
-                Наши преподаватели
-            </h3>
-            <div class="max-w-6xl mx-auto px-4">
+            <span class="inline-block bg-indigo-50 text-indigo-600 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">Команда</span>
+            <h3 class="text-4xl font-extrabold mb-4 text-gray-900">Наши преподаватели</h3>
+            <p class="text-gray-500 max-w-xl mx-auto mb-14">Опытные педагоги, которые вдохновляют детей на создание</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {% for teacher in teachers %}
                 {% include 'partials/teacher_card.html' %}
                 {% endfor %}
