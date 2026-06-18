@@ -13,7 +13,7 @@
                 Набор открыт · Для детей 7–17 лет
             </span>
 
-            <h2 class="text-5xl sm:text-6xl font-extrabold text-white leading-tight mb-6">
+            <h2 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
                 {{ hero.top_text }}<br class="hidden sm:block"/>
                 <span class="text-yellow-300">{{ hero.bottom_text }}</span>
             </h2>
@@ -258,80 +258,106 @@
 
     {# ── Contacts ─────────────────────────────────────────────────────────── #}
     <section id="contacts" class="py-24 bg-white fade-in">
-        <div class="max-w-xl mx-auto px-4">
-            <div class="text-center mb-10">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-12">
                 <span class="inline-block bg-indigo-50 text-indigo-600 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">Свяжитесь с нами</span>
                 <h3 class="text-4xl font-extrabold text-gray-900">Контакты</h3>
             </div>
 
-            <div class="p-px bg-gradient-to-br from-indigo-500 via-violet-500 to-pink-500 rounded-3xl shadow-xl shadow-indigo-100">
-                <div class="bg-white p-8 rounded-3xl">
-                    <div class="space-y-2">
-                        {% if contacts.phone %}
-                        <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50 transition group">
-                            <div class="w-11 h-11 rounded-xl bg-indigo-50 flex items-center justify-center flex-shrink-0 group-hover:bg-indigo-100 transition">
-                                <i class="fas fa-phone-alt text-indigo-600"></i>
-                            </div>
-                            <a href="tel:{{ contacts.phone }}" class="font-medium text-gray-700 hover:text-indigo-600 transition">{{ contacts.phone }}</a>
-                        </div>
-                        {% endif %}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                        {% if contacts.email %}
-                        <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50 transition group">
-                            <div class="w-11 h-11 rounded-xl bg-violet-50 flex items-center justify-center flex-shrink-0 group-hover:bg-violet-100 transition">
-                                <i class="fas fa-envelope text-violet-600"></i>
+                {# Левая колонка — способы связи #}
+                <div class="p-px bg-gradient-to-br from-indigo-500 via-violet-500 to-pink-500 rounded-3xl shadow-lg">
+                    <div class="bg-white p-8 rounded-3xl h-full">
+                        <h4 class="font-bold text-gray-900 text-lg mb-6">Напишите или позвоните</h4>
+                        <div class="space-y-2">
+                            {% if contacts.phone %}
+                            <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50 transition group">
+                                <div class="w-11 h-11 rounded-xl bg-indigo-50 flex items-center justify-center flex-shrink-0 group-hover:bg-indigo-100 transition">
+                                    <i class="fas fa-phone-alt text-indigo-600"></i>
+                                </div>
+                                <a href="tel:{{ contacts.phone }}" class="font-medium text-gray-700 hover:text-indigo-600 transition">{{ contacts.phone }}</a>
                             </div>
-                            <a href="mailto:{{ contacts.email }}" class="font-medium text-gray-700 hover:text-violet-600 transition">{{ contacts.email }}</a>
-                        </div>
-                        {% endif %}
-
-                        {% if contacts.whatsapp_number %}
-                        <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50 transition group">
-                            <div class="w-11 h-11 rounded-xl bg-green-50 flex items-center justify-center flex-shrink-0 group-hover:bg-green-100 transition">
-                                <i class="fab fa-whatsapp text-green-600"></i>
-                            </div>
-                            <a href="https://wa.me/{{ contacts.whatsapp_number }}" target="_blank"
-                               class="font-medium text-gray-700 hover:text-green-600 transition">{{ contacts.whatsapp_number }}</a>
-                        </div>
-                        {% endif %}
-
-                        {% if contacts.telegram_login %}
-                        <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50 transition group">
-                            <div class="w-11 h-11 rounded-xl bg-sky-50 flex items-center justify-center flex-shrink-0 group-hover:bg-sky-100 transition">
-                                <i class="fab fa-telegram-plane text-sky-500"></i>
-                            </div>
-                            <a href="https://t.me/{{ contacts.telegram_login }}" target="_blank"
-                               class="font-medium text-gray-700 hover:text-sky-500 transition">@{{ contacts.telegram_login }}</a>
-                        </div>
-                        {% endif %}
-                    </div>
-
-                    {% if contacts.instagram_link or contacts.vk_link or contacts.youtube_link %}
-                    <div class="mt-6 border-t border-gray-100 pt-6 text-center">
-                        <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Мы в соцсетях</h4>
-                        <div class="flex justify-center gap-3">
-                            {% if contacts.instagram_link %}
-                            <a href="{{ contacts.instagram_link }}" target="_blank"
-                               class="w-11 h-11 rounded-xl bg-gradient-to-br from-pink-500 to-rose-500 text-white flex items-center justify-center hover:scale-110 transition-transform shadow-md">
-                                <i class="fab fa-instagram text-lg"></i>
-                            </a>
                             {% endif %}
-                            {% if contacts.vk_link %}
-                            <a href="{{ contacts.vk_link }}" target="_blank"
-                               class="w-11 h-11 rounded-xl bg-blue-600 text-white flex items-center justify-center hover:scale-110 transition-transform shadow-md">
-                                <i class="fab fa-vk text-lg"></i>
-                            </a>
+
+                            {% if contacts.email %}
+                            <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50 transition group">
+                                <div class="w-11 h-11 rounded-xl bg-violet-50 flex items-center justify-center flex-shrink-0 group-hover:bg-violet-100 transition">
+                                    <i class="fas fa-envelope text-violet-600"></i>
+                                </div>
+                                <a href="mailto:{{ contacts.email }}" class="font-medium text-gray-700 hover:text-violet-600 transition">{{ contacts.email }}</a>
+                            </div>
                             {% endif %}
-                            {% if contacts.youtube_link %}
-                            <a href="{{ contacts.youtube_link }}" target="_blank"
-                               class="w-11 h-11 rounded-xl bg-red-600 text-white flex items-center justify-center hover:scale-110 transition-transform shadow-md">
-                                <i class="fab fa-youtube text-lg"></i>
-                            </a>
+
+                            {% if contacts.whatsapp_number %}
+                            <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50 transition group">
+                                <div class="w-11 h-11 rounded-xl bg-green-50 flex items-center justify-center flex-shrink-0 group-hover:bg-green-100 transition">
+                                    <i class="fab fa-whatsapp text-green-600"></i>
+                                </div>
+                                <a href="https://wa.me/{{ contacts.whatsapp_number }}" target="_blank"
+                                   class="font-medium text-gray-700 hover:text-green-600 transition">{{ contacts.whatsapp_number }}</a>
+                            </div>
+                            {% endif %}
+
+                            {% if contacts.telegram_login %}
+                            <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50 transition group">
+                                <div class="w-11 h-11 rounded-xl bg-sky-50 flex items-center justify-center flex-shrink-0 group-hover:bg-sky-100 transition">
+                                    <i class="fab fa-telegram-plane text-sky-500"></i>
+                                </div>
+                                <a href="https://t.me/{{ contacts.telegram_login }}" target="_blank"
+                                   class="font-medium text-gray-700 hover:text-sky-500 transition">@{{ contacts.telegram_login }}</a>
+                            </div>
                             {% endif %}
                         </div>
                     </div>
-                    {% endif %}
                 </div>
+
+                {# Правая колонка — CTA + соцсети #}
+                <div class="bg-gradient-to-br from-indigo-600 via-violet-600 to-pink-500 rounded-3xl p-8 text-white flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center mb-5">
+                            <i class="fas fa-paper-plane text-white text-xl"></i>
+                        </div>
+                        <h4 class="font-extrabold text-white text-2xl mb-3">Готовы начать?</h4>
+                        <p class="text-white/75 text-sm leading-relaxed">
+                            Оставьте заявку — мы подберём подходящий курс и свяжемся с вами в течение 24 часов.
+                        </p>
+                    </div>
+
+                    <div class="mt-8">
+                        <a href="#application_form"
+                           class="w-full block text-center bg-white text-indigo-600 font-bold py-3.5 rounded-xl hover:bg-indigo-50 transition-all hover:scale-[1.02] active:scale-95 shadow-lg">
+                            Оставить заявку →
+                        </a>
+
+                        {% if contacts.instagram_link or contacts.vk_link or contacts.youtube_link %}
+                        <div class="mt-6 pt-6 border-t border-white/20">
+                            <p class="text-white/50 text-xs font-semibold uppercase tracking-wider mb-3">Мы в соцсетях</p>
+                            <div class="flex gap-3">
+                                {% if contacts.instagram_link %}
+                                <a href="{{ contacts.instagram_link }}" target="_blank"
+                                   class="w-10 h-10 rounded-xl bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-all hover:scale-110">
+                                    <i class="fab fa-instagram text-lg"></i>
+                                </a>
+                                {% endif %}
+                                {% if contacts.vk_link %}
+                                <a href="{{ contacts.vk_link }}" target="_blank"
+                                   class="w-10 h-10 rounded-xl bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-all hover:scale-110">
+                                    <i class="fab fa-vk text-lg"></i>
+                                </a>
+                                {% endif %}
+                                {% if contacts.youtube_link %}
+                                <a href="{{ contacts.youtube_link }}" target="_blank"
+                                   class="w-10 h-10 rounded-xl bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-all hover:scale-110">
+                                    <i class="fab fa-youtube text-lg"></i>
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
