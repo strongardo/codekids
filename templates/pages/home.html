@@ -189,10 +189,24 @@
             <h3 class="text-4xl font-extrabold mb-4 text-gray-900">Что говорят родители</h3>
             <p class="text-gray-500 max-w-xl mx-auto mb-8 md:mb-14">Настоящие отзывы от наших учеников и их родителей</p>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
-                {% for review in reviews %}
-                {% include 'partials/review_slide.html' %}
-                {% endfor %}
+            <div class="relative">
+                <div id="reviewTrack" class="no-scrollbar flex overflow-x-auto snap-x snap-mandatory scroll-smooth gap-5 pb-4">
+                    {% for review in reviews %}
+                    <div class="review-card-item snap-start flex-none w-4/5 sm:w-[45%] lg:w-[30%] text-left">
+                        {% include 'partials/review_slide.html' %}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="flex justify-center gap-3 mt-6">
+                    <button id="prevReview"
+                            class="w-10 h-10 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center hover:bg-indigo-50 hover:border-indigo-200 transition-all">
+                        <i class="fas fa-chevron-left text-gray-500 text-sm"></i>
+                    </button>
+                    <button id="nextReview"
+                            class="w-10 h-10 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center hover:bg-indigo-50 hover:border-indigo-200 transition-all">
+                        <i class="fas fa-chevron-right text-gray-500 text-sm"></i>
+                    </button>
+                </div>
             </div>
 
             <div class="max-w-xl mx-auto mt-16 text-left">
@@ -361,6 +375,19 @@
             document.getElementById('review_form')?.scrollIntoView({ behavior: 'smooth' });
         {% endif %}
 
+        const track = document.getElementById('reviewTrack');
+        if (track) {
+            const scrollAmount = () => {
+                const card = track.querySelector('.review-card-item');
+                return card ? card.offsetWidth + 20 : 300;
+            };
+            document.getElementById('prevReview')?.addEventListener('click', () => {
+                track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+            });
+            document.getElementById('nextReview')?.addEventListener('click', () => {
+                track.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+            });
+        }
     };
 </script>
 {% endblock %}
